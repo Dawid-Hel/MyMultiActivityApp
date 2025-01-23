@@ -22,20 +22,30 @@ public class SecondActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textViewMessage);
         EditText editText = findViewById(R.id.editText);
+        EditText editText2 = findViewById(R.id.editText2);
+        EditText editText3 = findViewById(R.id.editText3);
         String message = getIntent().getStringExtra("message");
         textView.setText(message);
-        String name = editText.getText().toString();
 
 
-
-
-
+        Button submit = findViewById(R.id.submit);
         Button buttonBack = findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(v-> {
-            Intent intent = new Intent(SecondActivity.this, SecondActivity.class);
-            intent.putExtra("name", editText.getUrls());
+
+        submit.setOnClickListener(v-> {
+            String name = editText.getText().toString();
+            String surname = editText2.getText().toString();
+            String email = editText3.getText().toString();
+            Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+            intent.putExtra(MainActivity.IntentName, name);
+            intent.putExtra(MainActivity.IntentSurname, surname);
+            intent.putExtra(MainActivity.IntentEmail, email);
+            startActivity(intent);
             finish();
-                }
-        );
+
+        });
+        buttonBack.setOnClickListener(v-> {
+            finish();
+        });
+
     }
 }
